@@ -1,0 +1,134 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "background": "#6272a4",
+          "foreground": "#f8f8f2",
+          "leading_diamond": "\uE0B6",
+          "style": "diamond",
+          "template": "{{ .UserName }} ",
+          "type": "session"
+        },
+        {
+          "background": "#bd93f9",
+          "foreground": "#f8f8f2",
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "style": "folder"
+          },
+          "style": "powerline",
+          "template": " \uF07B {{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "background": "#ffb86c",
+          "foreground": "#f8f8f2",
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "branch_icon": "",
+            "fetch_stash_count": true,
+            "fetch_status": false,
+            "fetch_upstream_icon": true
+          },
+          "style": "powerline",
+          "template": " \ue725 ({{ .UpstreamIcon }}{{ .HEAD }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }}) ",
+          "type": "git"
+        },
+        {
+          "background": "#8be9fd",
+          "foreground": "#f8f8f2",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": " \ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
+          "type": "node"
+        },
+        {
+          "background": "#ff79c6",
+          "foreground": "#f8f8f2",
+          "properties": {
+            "time_format": "15:04:05"
+          },
+          "style": "diamond",
+          "template": " \uf43a {{ .CurrentDate | date .Format }} ",
+          "trailing_diamond": "\ue0b0",
+          "type": "time"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "background": "#f1fa8c",
+          "foreground": "#282a36",
+          "invert_powerline": true,
+          "leading_diamond": "\ue0b2",
+          "style": "diamond",
+          "template": " \ue7ad {{.Profile}}{{if .Region}}@{{.Region}}{{end}}",
+          "trailing_diamond": "\ue0b4",
+          "type": "aws"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "segments": [
+        {
+          "background": "#21222C",
+          "foreground_templates": [
+            "{{ if .Error }}p:c-battery-state-error{{ end }}",
+            "{{ if le .Percentage 15 }}p:c-battery-15-less{{ end }}",
+            "{{ if and (ge .Percentage 16) (le .Percentage 30) }}p:c-battery-30-less{{ end }}",
+            "{{ if and (ge .Percentage 31) (le .Percentage 45) }}p:c-battery-45-less{{ end }}",
+            "{{ if and (ge .Percentage 46) (le .Percentage 55) }}p:c-battery-55-less{{ end }}",
+            "{{ if and (ge .Percentage 56) (le .Percentage 70) }}p:c-battery-70-less{{ end }}",
+            "{{ if and (ge .Percentage 71) (le .Percentage 90) }}p:c-battery-90-less{{ end }}",
+            "{{ if and (ge .Percentage 91) (le .Percentage 100) }}p:c-battery-100-less{{ end }}"
+          ],
+          "leading_diamond": "\uE0B6",
+          "style": "diamond",
+          "template": "{{ if eq \"True\" (title (default \"False\" .Env.DISABLE_SEGMENT_BATTERY)) }}{{ else }}{{ if not .Error }}{{ if eq \"Charging\" .State.String }}{{ if le .Percentage 10 }}\udb82\udc9c{{ else if and (ge .Percentage 11) (le .Percentage 20) }}\udb80\udc86{{ else if and (ge .Percentage 21) (le .Percentage 30) }}\udb80\udc87{{ else if and (ge .Percentage 31) (le .Percentage 40) }}\udb80\udc88{{ else if and (ge .Percentage 41) (le .Percentage 50) }}\udb82\udc9d{{ else if and (ge .Percentage 51) (le .Percentage 60) }}\udb80\udc89{{ else if and (ge .Percentage 61) (le .Percentage 70) }}\udb82\udc9e{{ else if and (ge .Percentage 71) (le .Percentage 80) }}\udb80\udc8a{{ else if and (ge .Percentage 81) (le .Percentage 90) }}\udb80\udc8b{{ else }}\udb80\udc85{{ end }}{{ else if or (eq \"Discharging\" .State.String) (eq \"Full\" .State.String) }}{{ if le .Percentage 10 }}\udb80\udc7a{{ else if and (ge .Percentage 11) (le .Percentage 20) }}\udb80\udc7b{{ else if and (ge .Percentage 21) (le .Percentage 30) }}\udb80\udc7c{{ else if and (ge .Percentage 31) (le .Percentage 40) }}\udb80\udc7d{{ else if and (ge .Percentage 41) (le .Percentage 50) }}\udb80\udc7e{{ else if and (ge .Percentage 51) (le .Percentage 60) }}\udb80\udc7f{{ else if and (ge .Percentage 61) (le .Percentage 70) }}\udb80\udc80{{ else if and (ge .Percentage 71) (le .Percentage 80) }}\udb80\udc81{{ else if and (ge .Percentage 81) (le .Percentage 90) }}\udb80\udc82{{ else }}\udb80\udc79{{ end }}{{ if eq \"Full\" .State.String }}\ue22f{{ end }}{{ else }}\udb80\udc91{{ end }} {{ .Percentage }}%{{ else }}\udb80\udc83{{ end }}{{ end }}",
+          "trailing_diamond": "\uE0B4",
+          "type": "battery"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#fff",
+          "style": "plain",
+          "template": " \u26a1 ",
+          "type": "root"
+        },
+        {
+          "foreground": "#f1184c",
+          "style": "plain",
+          "template": "🐺 ",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "final_space": true,
+  "palette": {
+    "c-battery-15-less": "#FF8A80",
+    "c-battery-30-less": "#FFD180",
+    "c-battery-45-less": "#FFE57F",
+    "c-battery-55-less": "#FFFF8D",
+    "c-battery-70-less": "#F4FF81",
+    "c-battery-90-less": "#B9F6CA",
+    "c-battery-100-less": "#CCFF90",
+    "c-battery-state-error": "#FF867F"
+  },
+  "version": 2
+}
